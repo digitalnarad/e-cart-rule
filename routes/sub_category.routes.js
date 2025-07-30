@@ -12,13 +12,13 @@ router.get(
 
 router.post(
   "/add",
-  validateRequest(subCategoryValidation.subCategoryValidationSchema),
+  validateRequest(subCategoryValidation.addSubCategory),
   sub_category_controller.createSubCategory
 );
 
 router.put(
   "/update/:_id",
-  validateRequest(subCategoryValidation.subCategoryValidationSchema),
+  validateRequest(subCategoryValidation.updateSubCategory),
   sub_category_controller.updateSubCategory
 );
 

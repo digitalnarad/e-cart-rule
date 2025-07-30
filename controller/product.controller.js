@@ -51,10 +51,24 @@ const getProductById = catchAsync(async (req, res) => {
 
 const updateProduct = catchAsync(async (req, res) => {
   const product_id = req.params.product_id;
+  const { category_id, sub_category_id } = req.body;
+
   const product = await product_services.findProduct({
     _id: product_id,
   });
   if (!product) return response400(res, response_msg.notFound);
+
+  if (category_id) {
+    const category = await category_services.findCategory({ _id: category_id });
+    if (!category) return response400(res, response_msg.notFound);
+  }
+
+  if (sub_category_id) {
+    const sub_category = await sub_category_services.findSubCategory({
+      _id: sub_category_id,
+    });
+    if (!sub_category) return response400(res, response_msg.notFound);
+  }
 
   const newProduct = await product_services.updateProduct(
     { _id: product_id },

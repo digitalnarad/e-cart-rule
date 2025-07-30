@@ -6,14 +6,14 @@ const routes = require("express").Router();
 
 routes.post(
   "/add",
-  validateRequest(productValidation.productValidationSchema),
+  validateRequest(productValidation.addProduct),
   product_controller.createProduct
 );
 routes.get("/get-all", product_controller.gteAllProduct);
 routes.get("/get-one/:product_id", product_controller.getProductById);
 routes.put(
   "/update/:product_id",
-  validateRequest(productValidation.productValidationSchema),
+  validateRequest(productValidation.updateProduct),
   product_controller.updateProduct
 );
 routes.delete("/delete/:product_id", product_controller.deleteProduct);

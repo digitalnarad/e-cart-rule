@@ -4,14 +4,14 @@ const router = require("express").Router();
 
 router.post(
   "/add",
-  validateRequest(cartValidation.cartValidationSchema),
+  validateRequest(cartValidation.addCart),
   cart_controller.createCart
 );
 router.get("/get-all", cart_controller.gteAllCart);
 router.get("/get-by-user-id", cart_controller.getCartByUserId);
 router.put(
   "/update",
-  validateRequest(cartValidation.cartValidationSchema),
+  validateRequest(cartValidation.addCart),
   cart_controller.updateCart
 );
 router.post("/reset-cart", cart_controller.resetCart);

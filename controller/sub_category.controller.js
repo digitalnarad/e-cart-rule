@@ -44,10 +44,12 @@ const getSubCategoryByCategory = catchAsync(async (req, res) => {
 const updateSubCategory = catchAsync(async (req, res) => {
   const _id = req.params._id;
   const { category_id } = req.body;
-  const category = await sub_category_services.findSubCategory({
-    _id: category_id,
-  });
-  if (!category) return response400(res, response_msg.notFound);
+  if (category_id) {
+    const category = await sub_category_services.findSubCategory({
+      _id: category_id,
+    });
+    if (!category) return response400(res, response_msg.notFound);
+  }
 
   const updatedCategory = await sub_category_services.updateSubCategory(
     { _id: _id },
@@ -60,10 +62,10 @@ const updateSubCategory = catchAsync(async (req, res) => {
 
 const deleteSubCategory = catchAsync(async (req, res) => {
   const _id = req.params._id;
-  const category = await sub_category_services.findSubCategory({
+  const subCategory = await sub_category_services.findSubCategory({
     _id: _id,
   });
-  if (!category) return response400(res, response_msg.notFound);
+  if (!subCategory) return response400(res, response_msg.notFound);
 
   await sub_category_services.updateSubCategory(
     { _id: _id },

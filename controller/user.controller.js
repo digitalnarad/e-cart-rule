@@ -26,10 +26,10 @@ const userSignIn = catchAsync(async (req, res) => {
 });
 
 const userSignUp = catchAsync(async (req, res) => {
-  let { email, password, user_name } = req.body;
+  let { email, password } = req.body;
 
   const user = await user_services.findUser({
-    $or: [{ email }, { user_name }],
+    email,
     is_deleted: false,
   });
   if (user) return response400(res, response_msg.emailIsExists);

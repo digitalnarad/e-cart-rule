@@ -7,12 +7,12 @@ router.delete("/delete/:category_id", category_controller.deleteCategory);
 
 router.post(
   "/add",
-  validateRequest(categoryValidation.categoryValidationSchema),
+  validateRequest(categoryValidation.addCategory),
   category_controller.createCategory
 );
 router.put(
   "/update/:category_id",
-  validateRequest(categoryValidation.categoryValidationSchema),
+  validateRequest(categoryValidation.updateCategory),
   category_controller.updateCategory
 );
 

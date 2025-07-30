@@ -12,13 +12,13 @@ router.get("/", (req, res) => {
 
 router.post(
   "/sign-in",
-  validateRequest(userValidation.signInValidationSchema),
+  validateRequest(userValidation.signIn),
   user_controller.userSignIn
 );
 
 router.post(
   "/sign-up",
-  validateRequest(userValidation.signUpValidationSchema),
+  validateRequest(userValidation.signUp),
   user_controller.userSignUp
 );
 
