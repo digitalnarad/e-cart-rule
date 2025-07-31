@@ -70,6 +70,7 @@ const ApplyRule = catchAsync(async (req, res) => {
   }
 
   events.sort((a, b) => b.params.priority - a.params.priority);
+  console.log("events", events);
   const event = events[0];
 
   const updatedCart = await rule_services.handleApplyRule({ event, almanac });
