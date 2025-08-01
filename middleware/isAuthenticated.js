@@ -14,7 +14,6 @@ exports.isAuthenticated = catchAsync(async (req, res, next) => {
   const data = await verifyToken(token);
 
   const user = await user_services.findUser({ _id: data?.user_id });
-  console.log("user", user);
   if (!user) return response401(res, response_msg.tokenExpired);
   if (!user.is_active) return response401(res, response_msg.accountInActivated);
 

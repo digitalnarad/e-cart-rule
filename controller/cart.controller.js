@@ -12,14 +12,13 @@ const {
 } = require("../lib/response-messages");
 
 const gteAllCart = catchAsync(async (req, res) => {
-  const carts = await cart_services.gteCart({});
+  const carts = await cart_services.findAllCart();
   return response200(res, response_msg.fetchALL, carts);
 });
 
 const getCartByUserId = catchAsync(async (req, res) => {
   const user = req.user;
-  console.log("user", user);
-  const cart = await cart_services.gteCart({
+  const cart = await cart_services.findCartByIds({
     user_id: user._id,
   });
   if (!cart) return response400(res, response_msg.notFound);
@@ -34,7 +33,7 @@ const createCart = catchAsync(async (req, res) => {
   const cart = await cart_services.findCartByIds({
     user_id: user._id,
   });
-  if (cart) return response400(res, response_msg.alreadyExist);
+  if (cart) return response400(res, response_msg.cartAlreadyExist);
 
   if (!order_items.length) {
     const newCart = await cart_services.registerCart({
@@ -60,6 +59,8 @@ const createCart = catchAsync(async (req, res) => {
       ...item,
       price: product.price * item.quantity,
       offer_price: product.offer_price * item.quantity,
+      category_id: product.category_id,
+      sub_category_id: product.sub_category_id,
     };
   });
 

@@ -3,7 +3,6 @@ const ErrorHandler = require("../utils/ErrorHandler");
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.message = err.message || "Something is wrong";
-  console.log("called", err);
 
   if (err.name === "CastError") {
     const message = `Resource not found.Invalid :${err.path}`;
@@ -12,7 +11,6 @@ module.exports = (err, req, res, next) => {
 
   if (err.code == "11000") {
     const message = `Duplicate ${Object.keys(err.keyValue)} entered`;
-    // console.log(Object.keys(err.keyValue)),
     err = new ErrorHandler(message, 400);
   }
 

@@ -39,7 +39,6 @@ const handleApplyRule = async ({ event, almanac }) => {
 
     if (event.type === "price-discount") {
       const { discount_event, value } = event.params;
-      console.log("discount_event", discount_event);
       let finalTotal = cart.offer_amount
         ? cart.offer_amount
         : cart.total_amount;
@@ -58,11 +57,9 @@ const handleApplyRule = async ({ event, almanac }) => {
       } else if (discount_event === "by-one-get-free") {
         finalTotal -= finalTotal / 2;
       } else if (discount_event === "one-item-free") {
-        console.log("cart.order_items", cart.order_items);
         const findItem = cart.order_items.find(
           (e) => e.product_id.toString() === value
         );
-        console.log("findItem", findItem);
         finalTotal -= findItem?.offer_price || 0;
       }
       cart.apply_rule_amount = finalTotal.toFixed(2);

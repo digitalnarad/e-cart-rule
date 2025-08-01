@@ -1,57 +1,14 @@
 const { model_name } = require("../utils/helper");
 const mongoServices = require("../config/mongoServices");
 
-const gteCart = async (query) => {
+const findAllCart = async () => {
   try {
-    const pipeline = [
-      {
-        $match: query,
-      },
-      {
-        $unwind: "$order_items",
-      },
-
-      {
-        $lookup: {
-          from: "products",
-          localField: "order_items.product_id",
-          foreignField: "_id",
-          as: "product_details",
-        },
-      },
-
-      {
-        $unwind: {
-          path: "$product_details",
-          preserveNullAndEmptyArrays: true,
-        },
-      },
-
-      {
-        $group: {
-          _id: "$_id",
-          user_id: { $first: "$user_id" },
-          added_by: { $first: "$added_by" },
-          createdAt: { $first: "$createdAt" },
-          updatedAt: { $first: "$updatedAt" },
-          order_items: {
-            $push: {
-              product_id: "$order_items.product_id",
-              quantity: "$order_items.quantity",
-              product_details: "$product_details",
-            },
-          },
-        },
-      },
-    ];
-    return await mongoServices.aggregation(model_name.CART, pipeline);
+    return await mongoServices.findAll(model_name.CART, {});
   } catch (error) {
     throw error;
   }
 };
-
 const findCartByIds = async (query) => {
-  console.log("query", query);
   try {
     return await mongoServices.findOne(model_name.CART, query);
   } catch (error) {
@@ -76,7 +33,7 @@ const updateCart = async (query, payload) => {
 };
 
 module.exports = {
-  gteCart,
+  findAllCart,
   registerCart,
   updateCart,
   findCartByIds,

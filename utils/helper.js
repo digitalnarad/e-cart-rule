@@ -33,6 +33,9 @@ const response_msg = {
   invalidToken: "Invalid Token",
   canNotFindCategory: "Can not find category data",
   resetCart: "Reset cart successfully",
+  cartAlreadyExist: "Cart already exists. please update cart !",
+  alreadyExist: "Already exists",
+  verifiedSuccess: "Verified successfully",
 };
 
 const categoryIds = [

@@ -12,7 +12,6 @@ const userSignIn = catchAsync(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await user_services.findUser({ email, is_deleted: false });
-  console.log("user", user);
   if (!user) return response400(res, response_msg.invalidCredentials);
 
   const validPassword = PasswordValidation(password, user.password);
@@ -37,6 +36,15 @@ const userSignUp = catchAsync(async (req, res) => {
   req.body.password = hashPassword(password);
 
   const newUser = await user_services.registerUser(req.body);
+
+  await cart_services.registerCart({
+    user_id: newUser._id,
+    order_items: [],
+    total_amount: 0,
+    offer_amount: 0,
+    total_order: 0,
+    total_product: 0,
+  });
 
   return response200(res, response_msg.signupSuccess, newUser);
 });

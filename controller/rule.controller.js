@@ -46,7 +46,6 @@ const ApplyRule = catchAsync(async (req, res) => {
   const ruleEngineService = new RuleEngineService();
 
   const cart = await cart_services.findCartByIds({ _id });
-  console.log("cart", cart);
   if (!cart) return response400(res, response_msg.notFound);
 
   const rules = await rule_services.getAllRule({
@@ -70,7 +69,6 @@ const ApplyRule = catchAsync(async (req, res) => {
   }
 
   events.sort((a, b) => b.params.priority - a.params.priority);
-  console.log("events", events);
   const event = events[0];
 
   const updatedCart = await rule_services.handleApplyRule({ event, almanac });

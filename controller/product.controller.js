@@ -24,20 +24,17 @@ const createProduct = catchAsync(async (req, res) => {
   const { category_id, sub_category_id } = req.body;
 
   const category = await category_services.findCategory({ _id: category_id });
-  console.log("category", category);
   if (!category) return response400(res, response_msg.notFound);
 
   const sub_category = await sub_category_services.findSubCategory({
     _id: sub_category_id,
   });
-  console.log("sub_category", sub_category);
   if (!sub_category) return response400(res, response_msg.notFound);
 
   const newProduct = await product_services.createProduct({
     ...req.body,
     added_by: user._id,
   });
-  console.log("newProduct", newProduct);
   return response201(res, response_msg.create, newProduct);
 });
 
@@ -76,7 +73,7 @@ const updateProduct = catchAsync(async (req, res) => {
       ...req.body,
     }
   );
-  return response201(res, response_msg.update, newProduct);
+  return response201(res, response_msg.update_success, newProduct);
 });
 
 const deleteProduct = catchAsync(async (req, res) => {

@@ -24,7 +24,7 @@ router.post(
 
 router.get("/token-verification", isAuthenticated, (req, res) => {
   const user = req.user;
-  response200(res, response_msg.fetchSuccessfully, user);
+  response200(res, response_msg.verifiedSuccess, user);
 });
 
 module.exports = router;
