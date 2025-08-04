@@ -52,6 +52,17 @@ const ApplyRule = catchAsync(async (req, res) => {
   const cart = await cart_services.findCartByIds({ _id });
   if (!cart) return response400(res, response_msg.notFound);
 
+  const category_ids = [
+    ...new Set(cart.order_items.map((item) => item.category_id.toString())),
+  ];
+
+  const sub_category_ids = [
+    ...new Set(cart.order_items.map((item) => item.sub_category_id.toString())),
+  ];
+
+  cart.category_ids = category_ids;
+  cart.sub_category_ids = sub_category_ids;
+
   const rules = await rule_services.getAllRule({
     is_active: true,
     is_deleted: false,
@@ -76,6 +87,9 @@ const ApplyRule = catchAsync(async (req, res) => {
   const event = events[0];
 
   const updatedCart = await rule_services.handleApplyRule({ event, almanac });
+
+  delete updatedCart.category_ids;
+  delete cart.sub_category_ids;
 
   response200(res, "apply rule", {
     cart: updatedCart,

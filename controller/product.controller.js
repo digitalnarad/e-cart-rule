@@ -20,6 +20,16 @@ const gteAllProduct = catchAsync(async (req, res) => {
   return response200(res, response_msg.fetchALL, products);
 });
 
+const getByCategory = catchAsync(async (req, res) => {
+  const category_id = req.params.category_id;
+  const products = await product_services.getProduct({
+    is_deleted: false,
+    is_active: true,
+    category_id: category_id,
+  });
+  return response200(res, response_msg.fetchALL, products);
+});
+
 // create product
 const createProduct = catchAsync(async (req, res) => {
   const user = req.user;
@@ -104,4 +114,5 @@ module.exports = {
   getProductById,
   updateProduct,
   deleteProduct,
+  getByCategory,
 };

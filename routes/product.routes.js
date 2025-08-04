@@ -10,6 +10,8 @@ routes.post(
   product_controller.createProduct
 );
 routes.get("/get-all", product_controller.gteAllProduct);
+routes.get("/get-by-category/:category_id", product_controller.getByCategory);
+
 routes.get("/get-one/:product_id", product_controller.getProductById);
 routes.put(
   "/update/:product_id",

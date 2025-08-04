@@ -33,54 +33,6 @@ const update = async (query, payload) => {
   }
 };
 
-// const handleApplyRule = async ({ event, almanac }) => {
-//   try {
-//     const cart = await almanac.factValue("cart");
-
-//     if (event.type === "price-discount") {
-//       const { discount_event, value } = event.params;
-//       let finalTotal = cart.offer_amount
-//         ? cart.offer_amount
-//         : cart.total_amount;
-
-//       if (discount_event === "min-item-price") {
-//         const order_product_prices = await almanac.factValue(
-//           "order_product_prices"
-//         );
-//         const min = order_product_prices.sort((a, b) => a - b);
-//         finalTotal -= min;
-//       } else if (discount_event === "fixed-discount") {
-//         finalTotal -= value;
-//       } else if (discount_event === "percentage-discount") {
-//         finalTotal -= (finalTotal * value) / 100;
-//       } else if (discount_event === "by-one-get-free") {
-//         finalTotal -= finalTotal / 2;
-//       } else if (discount_event === "one-item-free") {
-//         const findItem = cart.order_items.find(
-//           (e) => e.product_id.toString() === value
-//         );
-//         finalTotal -= findItem?.offer_price || 0;
-//       } else if (discount_event === "many-item-free") {
-//         if (value?.length <= 0) {
-//           return new Error(
-//             "Please enter at least one product id to apply rule"
-//           );
-//         }
-//         value.forEach((id) => {
-//           const findItem = cart.order_items.find(
-//             (e) => e.product_id.toString() === id
-//           );
-//           finalTotal -= findItem?.offer_price || 0;
-//         });
-//       }
-//       cart.apply_rule_amount = finalTotal.toFixed(2);
-//     }
-//     return cart;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
-
 const discountStrategies = {
   "min-item-price": async ({ cart, almanac }) => {
     const prices = await almanac.factValue("order_product_prices");
