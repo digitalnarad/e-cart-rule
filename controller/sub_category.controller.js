@@ -7,6 +7,7 @@ const {
 } = require("../lib/response-messages");
 const { response_msg } = require("../utils/helper");
 
+// get all product
 const gteAllSubCategory = catchAsync(async (req, res) => {
   const products = await sub_category_services.findAllSubCategory({
     is_deleted: false,
@@ -15,6 +16,7 @@ const gteAllSubCategory = catchAsync(async (req, res) => {
   return response200(res, response_msg.fetchALL, products);
 });
 
+// create product
 const createSubCategory = catchAsync(async (req, res) => {
   const user = req.user;
   const { category_id } = req.body;
@@ -33,6 +35,7 @@ const createSubCategory = catchAsync(async (req, res) => {
   return response201(res, response_msg.create, newProduct);
 });
 
+// get all product
 const getSubCategoryByCategory = catchAsync(async (req, res) => {
   const category_id = req.params.category_id;
   const product = await sub_category_services.findAllSubCategory({
@@ -41,6 +44,7 @@ const getSubCategoryByCategory = catchAsync(async (req, res) => {
   return response200(res, response_msg.fetchALL, product);
 });
 
+// update product
 const updateSubCategory = catchAsync(async (req, res) => {
   const _id = req.params._id;
   const { category_id } = req.body;
@@ -60,6 +64,7 @@ const updateSubCategory = catchAsync(async (req, res) => {
   return response201(res, response_msg.update_success, updatedCategory);
 });
 
+// delete product
 const deleteSubCategory = catchAsync(async (req, res) => {
   const _id = req.params._id;
   const subCategory = await sub_category_services.findSubCategory({

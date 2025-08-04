@@ -7,6 +7,7 @@ const {
   response400,
 } = require("../lib/response-messages");
 
+// get all category
 const gteAllCategory = catchAsync(async (req, res) => {
   const products = await category_services.gteAllCategory({
     is_deleted: false,
@@ -15,6 +16,7 @@ const gteAllCategory = catchAsync(async (req, res) => {
   return response200(res, response_msg.fetchALL, products);
 });
 
+// create category
 const createCategory = catchAsync(async (req, res) => {
   const user = req.user;
   const newProduct = await category_services.registerCategory({
@@ -24,6 +26,7 @@ const createCategory = catchAsync(async (req, res) => {
   return response201(res, response_msg.create, newProduct);
 });
 
+// update category
 const updateCategory = catchAsync(async (req, res) => {
   const category_id = req.params.category_id;
   const category = await category_services.findCategory({
@@ -41,6 +44,7 @@ const updateCategory = catchAsync(async (req, res) => {
   return response201(res, response_msg.update_success, updatedCategory);
 });
 
+// delete category
 const deleteCategory = catchAsync(async (req, res) => {
   const category_id = req.params.category_id;
   const category = await category_services.findCategory({

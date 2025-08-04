@@ -11,11 +11,13 @@ const {
   response400,
 } = require("../lib/response-messages");
 
+// get all cart
 const gteAllCart = catchAsync(async (req, res) => {
   const carts = await cart_services.findAllCart();
   return response200(res, response_msg.fetchALL, carts);
 });
 
+// get cart by user
 const getCartByUserId = catchAsync(async (req, res) => {
   const user = req.user;
   const cart = await cart_services.findCartByIds({
@@ -25,6 +27,7 @@ const getCartByUserId = catchAsync(async (req, res) => {
   return response200(res, response_msg.fetchSuccessfully, cart);
 });
 
+// create cart
 const createCart = catchAsync(async (req, res) => {
   const user = req.user;
   const order_items = req.body.order_items;
@@ -87,6 +90,7 @@ const createCart = catchAsync(async (req, res) => {
   return response201(res, response_msg.create, newCart);
 });
 
+// update cart
 const updateCart = catchAsync(async (req, res) => {
   const user = req.user;
   const order_items = req.body.order_items;
@@ -141,6 +145,7 @@ const updateCart = catchAsync(async (req, res) => {
   return response201(res, response_msg.update_success, newCart);
 });
 
+// reset cart
 const resetCart = catchAsync(async (req, res) => {
   const user = req.user;
 

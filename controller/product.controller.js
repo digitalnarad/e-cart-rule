@@ -11,6 +11,7 @@ const {
   response400,
 } = require("../lib/response-messages");
 
+// get all product
 const gteAllProduct = catchAsync(async (req, res) => {
   const products = await product_services.getProduct({
     is_deleted: false,
@@ -19,6 +20,7 @@ const gteAllProduct = catchAsync(async (req, res) => {
   return response200(res, response_msg.fetchALL, products);
 });
 
+// create product
 const createProduct = catchAsync(async (req, res) => {
   const user = req.user;
   const { category_id, sub_category_id } = req.body;
@@ -38,6 +40,7 @@ const createProduct = catchAsync(async (req, res) => {
   return response201(res, response_msg.create, newProduct);
 });
 
+// get product by id
 const getProductById = catchAsync(async (req, res) => {
   const product_id = req.params.product_id;
   const product = await product_services.findProduct({
@@ -46,6 +49,7 @@ const getProductById = catchAsync(async (req, res) => {
   return response200(res, response_msg.fetchALL, product);
 });
 
+// update product
 const updateProduct = catchAsync(async (req, res) => {
   const product_id = req.params.product_id;
   const { category_id, sub_category_id } = req.body;
@@ -76,6 +80,7 @@ const updateProduct = catchAsync(async (req, res) => {
   return response201(res, response_msg.update_success, newProduct);
 });
 
+// delete product
 const deleteProduct = catchAsync(async (req, res) => {
   const product_id = req.params.product_id;
   const product = await product_services.findProduct({

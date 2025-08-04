@@ -13,6 +13,7 @@ const gteAllRule = catchAsync(async (req, res) => {
   response200(res, response_msg.fetchALL, rules);
 });
 
+// create rule
 const createRule = catchAsync(async (req, res) => {
   const newRule = await rule_services.createRule({
     ...req.body,
@@ -21,6 +22,7 @@ const createRule = catchAsync(async (req, res) => {
   response201(res, response_msg.create, { ...newRule.toObject() });
 });
 
+// update rule
 const updateRule = catchAsync(async (req, res) => {
   const _id = req.params._id;
 
@@ -31,6 +33,7 @@ const updateRule = catchAsync(async (req, res) => {
   response201(res, response_msg.update_success, { ...newRule });
 });
 
+// delete rule
 const deleteRule = catchAsync(async (req, res) => {
   const _id = req.params._id;
   const rule = await rule_services.findRule({ _id });
@@ -40,6 +43,7 @@ const deleteRule = catchAsync(async (req, res) => {
   response201(res, response_msg.delete_success, {});
 });
 
+// apply rule
 const ApplyRule = catchAsync(async (req, res) => {
   const _id = req.params._id;
 
