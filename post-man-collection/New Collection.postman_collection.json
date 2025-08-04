@@ -26,7 +26,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"product_uid\": \"product-7\",\r\n  \"name\": \"realme Watch Pro+\",\r\n  \"product_company\": \"realme\",\r\n  \"description\": \"realme Watch\",\r\n  \"actual_price\": 600,\r\n  \"offer_price\": 1099,\r\n  \"price\": 1299,\r\n  \"category_id\": \"688763f5ba2679d5daf8d5ce\",\r\n  \"sub_category_id\": \"6887ce0804c57b113fb9ef58\",\r\n  \"stock\": 100\r\n}",
+							"raw": "{\r\n  \"product_uid\": \"product-10\",\r\n  \"name\": \"office bag\",\r\n  \"product_company\": \"sufer\",\r\n  \"description\": \"office bag\",\r\n  \"actual_price\": 500,\r\n  \"offer_price\": 999,\r\n  \"price\": 1399,\r\n  \"category_id\": \"68876453ba2679d5daf8d5d1\",\r\n  \"sub_category_id\": \"6887cf7504c57b113fb9ef6d\",\r\n  \"stock\": 78\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -91,6 +91,49 @@
 					"response": []
 				},
 				{
+					"name": "get-by-category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{rule-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/v1/product/get-by-category/68876453ba2679d5daf8d5d1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"get-by-category",
+								"68876453ba2679d5daf8d5d1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "update",
 					"request": {
 						"auth": {
@@ -107,7 +150,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"stock\":140\r\n}",
+							"raw": "{\r\n    \"name\":\"puma men`s shoes\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -115,7 +158,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/api/v1/product/update/68899dcfa90a5ecf1a92f8ce",
+							"raw": "{{baseURL}}/api/v1/product/update/68909ad3d5d3b5df191dc07a",
 							"host": [
 								"{{baseURL}}"
 							],
@@ -124,7 +167,7 @@
 								"v1",
 								"product",
 								"update",
-								"68899dcfa90a5ecf1a92f8ce"
+								"68909ad3d5d3b5df191dc07a"
 							]
 						}
 					},
@@ -567,7 +610,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"order_items\":[\r\n        {\r\n            \"product_id\":\"6887d46815012728348fb483\",\r\n            \"quantity\":2\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"order_items\":[\r\n        {\r\n            \"product_id\": \"6887d46815012728348fb483\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"product_id\": \"688867b618aa294bc698a672\",\r\n            \"quantity\": 1\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -690,7 +733,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"order_items\": [\r\n        {\r\n            \"product_id\": \"688867b618aa294bc698a672\",\r\n            \"quantity\": 2\r\n        },\r\n        {\r\n            \"product_id\": \"6887d5d715012728348fb48f\",\r\n            \"quantity\": 1\r\n        },\r\n         {\r\n            \"product_id\": \"6887d4ed15012728348fb489\",\r\n            \"quantity\": 1\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"order_items\": [\r\n        {\r\n            \"product_id\": \"68909ad3d5d3b5df191dc07a\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"product_id\": \"68909be0d5d3b5df191dc090\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"product_id\": \"6887d5d715012728348fb48f\",\r\n            \"quantity\": 2\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -773,7 +816,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"By 1 get 1 free\",\r\n    \"rule_description\": \"test\",\r\n    \"priority\": 4,\r\n    \"is_active\":true,\r\n    \"conditions\": {\r\n        \"all\": [\r\n            {\r\n                \"fact\": \"cart\",\r\n                \"operator\": \"equal\",\r\n                \"value\": 2,\r\n                \"path\": \"$.total_product\"\r\n            },\r\n            {\r\n                \"fact\": \"order_item_ids\",\r\n                \"operator\": \"contains\",\r\n                \"value\": \"688867b618aa294bc698a672\"\r\n            },\r\n            {\r\n                \"fact\": \"order_item_ids\",\r\n                \"operator\": \"contains\",\r\n                \"value\": \"6887d4ed15012728348fb489\"\r\n            }\r\n        ]\r\n    },\r\n    \"event\": {\r\n        \"type\": \"price-discount\",\r\n        \"params\": {\r\n            \"message\": \"By i-phone get 1 Watch free\",\r\n            \"discount_event\": \"min-item-price\"\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    \"name\": \"By 3 fashion product get 1 free\",\r\n    \"rule_description\": \"By 3 fashion product get 1 minimum product price free\",\r\n    \"priority\": 6,\r\n    \"is_active\":true,\r\n    \"conditions\": {\r\n        \"all\": [\r\n            {\r\n                \"fact\": \"cart\",\r\n                \"operator\": \"equal\",\r\n                \"value\": 3,\r\n                \"path\": \"$.total_product\"\r\n            },\r\n            {\r\n                \"fact\": \"cart\",\r\n                \"path\":\"category_ids.length\",\r\n                \"operator\": \"equel\",\r\n                \"value\": 1\r\n            }\r\n        ]\r\n    },\r\n    \"event\": {\r\n        \"type\": \"price-discount\",\r\n        \"params\": {\r\n            \"message\": \"by any 3 fashion product get one free.\",\r\n            \"discount_event\": \"min-item-price\"\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -812,7 +855,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"event\": {\r\n        \"type\": \"price-discount\",\r\n        \"params\": {\r\n            \"message\": \"By i-phone get 1 Watch free.\",\r\n            \"discount_event\": \"min-item-price\"\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    \"name\":\"ok\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -895,7 +938,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"rule_title\": \"Min item price discount\",\r\n    \"rule_description\": \"test\",\r\n    \"priority\": 1,\r\n    \"conditions\": {\r\n       \"any\":[\r\n        {\r\n             \"all\": [\r\n            {\r\n                \"fact\": \"cart\",\r\n                \"operator\": \"greaterThanInclusive\",\r\n                \"value\": 2,\r\n                \"path\": \"$.order_items.length\"\r\n            }\r\n        ]\r\n        }\r\n       ]\r\n    },\r\n    \"event\": {\r\n        \"type\": \"price-discount\",\r\n        \"params\": {\r\n            \"message\": \"Minimum item price discount applied\",\r\n            \"discount_event\": \"min-item-price\"\r\n        }\r\n    }\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -916,7 +959,212 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "by-i-phone-get-watch-free",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"rule_title\": \"Min item price discount\",\r\n    \"rule_description\": \"test\",\r\n    \"priority\": 1,\r\n    \"conditions\": {\r\n       \"any\":[\r\n        {\r\n             \"all\": [\r\n            {\r\n                \"fact\": \"cart\",\r\n                \"operator\": \"greaterThanInclusive\",\r\n                \"value\": 2,\r\n                \"path\": \"$.order_items.length\"\r\n            }\r\n        ]\r\n        }\r\n       ]\r\n    },\r\n    \"event\": {\r\n        \"type\": \"price-discount\",\r\n        \"params\": {\r\n            \"message\": \"Minimum item price discount applied\",\r\n            \"discount_event\": \"min-item-price\"\r\n        }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/v1/rule/apply-rule/688886f44c3e25f24e37a2bb",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"rule",
+										"apply-rule",
+										"688886f44c3e25f24e37a2bb"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "727"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d7-jelcaMSPOObiAJbbt1VHbVjh4HE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Jul 2025 11:48:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"apply rule\",\n    \"response\": {\n        \"cart\": {\n            \"_id\": \"688886f44c3e25f24e37a2bb\",\n            \"user_id\": \"6887500d2968fd419548644f\",\n            \"order_items\": [\n                {\n                    \"product_id\": \"6887d46815012728348fb483\",\n                    \"quantity\": 1,\n                    \"price\": 69000,\n                    \"offer_price\": 65000,\n                    \"category_id\": \"688763f5ba2679d5daf8d5ce\",\n                    \"sub_category_id\": \"6887cdb304c57b113fb9ef4f\"\n                },\n                {\n                    \"product_id\": \"688867b618aa294bc698a672\",\n                    \"quantity\": 1,\n                    \"price\": 1399,\n                    \"offer_price\": 1299,\n                    \"category_id\": \"688763f5ba2679d5daf8d5ce\",\n                    \"sub_category_id\": \"6887ce0804c57b113fb9ef58\"\n                }\n            ],\n            \"total_amount\": 70399,\n            \"offer_amount\": 66299,\n            \"total_order\": 2,\n            \"total_product\": 2,\n            \"createdAt\": \"2025-07-29T08:31:48.126Z\",\n            \"updatedAt\": \"2025-07-31T11:48:23.682Z\",\n            \"apply_rule_amount\": \"65000.00\"\n        },\n        \"discount_message\": \"By i-phone get 1 Watch free\"\n    }\n}"
+						},
+						{
+							"name": "By 1 get 1 free",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"rule_title\": \"Min item price discount\",\r\n    \"rule_description\": \"test\",\r\n    \"priority\": 1,\r\n    \"conditions\": {\r\n       \"any\":[\r\n        {\r\n             \"all\": [\r\n            {\r\n                \"fact\": \"cart\",\r\n                \"operator\": \"greaterThanInclusive\",\r\n                \"value\": 2,\r\n                \"path\": \"$.order_items.length\"\r\n            }\r\n        ]\r\n        }\r\n       ]\r\n    },\r\n    \"event\": {\r\n        \"type\": \"price-discount\",\r\n        \"params\": {\r\n            \"message\": \"Minimum item price discount applied\",\r\n            \"discount_event\": \"min-item-price\"\r\n        }\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/v1/rule/apply-rule/688886f44c3e25f24e37a2bb",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"rule",
+										"apply-rule",
+										"688886f44c3e25f24e37a2bb"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "537"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"219-mOubKFrDu5aE271sAGt0dEFOl6Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Jul 2025 11:49:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"apply rule\",\n    \"response\": {\n        \"cart\": {\n            \"_id\": \"688886f44c3e25f24e37a2bb\",\n            \"user_id\": \"6887500d2968fd419548644f\",\n            \"order_items\": [\n                {\n                    \"product_id\": \"688867b618aa294bc698a672\",\n                    \"quantity\": 2,\n                    \"price\": 2798,\n                    \"offer_price\": 2598,\n                    \"category_id\": \"688763f5ba2679d5daf8d5ce\",\n                    \"sub_category_id\": \"6887ce0804c57b113fb9ef58\"\n                }\n            ],\n            \"total_amount\": 2798,\n            \"offer_amount\": 2598,\n            \"total_order\": 2,\n            \"total_product\": 1,\n            \"createdAt\": \"2025-07-29T08:31:48.126Z\",\n            \"updatedAt\": \"2025-07-31T11:49:51.565Z\",\n            \"apply_rule_amount\": \"1299.00\"\n        },\n        \"discount_message\": \"By 1 get 1 free\"\n    }\n}"
+						},
+						{
+							"name": "by any 3 fashion product get one free",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/v1/rule/apply-rule/688886f44c3e25f24e37a2bb",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"rule",
+										"apply-rule",
+										"688886f44c3e25f24e37a2bb"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "905"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"389-p85PW7I6G4sweu5MFZamUuForfM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Aug 2025 11:50:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"apply rule\",\n    \"response\": {\n        \"cart\": {\n            \"_id\": \"688886f44c3e25f24e37a2bb\",\n            \"user_id\": \"6887500d2968fd419548644f\",\n            \"order_items\": [\n                {\n                    \"product_id\": \"68909ad3d5d3b5df191dc07a\",\n                    \"quantity\": 1,\n                    \"price\": 9200,\n                    \"offer_price\": 4599,\n                    \"category_id\": \"68876453ba2679d5daf8d5d1\",\n                    \"sub_category_id\": \"6887cf3104c57b113fb9ef64\"\n                },\n                {\n                    \"product_id\": \"6887d55b15012728348fb48c\",\n                    \"quantity\": 1,\n                    \"price\": 599,\n                    \"offer_price\": 499,\n                    \"category_id\": \"68876453ba2679d5daf8d5d1\",\n                    \"sub_category_id\": \"6887cf5c04c57b113fb9ef6a\"\n                },\n                {\n                    \"product_id\": \"6887d5d715012728348fb48f\",\n                    \"quantity\": 1,\n                    \"price\": 1399,\n                    \"offer_price\": 1299,\n                    \"category_id\": \"68876453ba2679d5daf8d5d1\",\n                    \"sub_category_id\": \"6887cf3b04c57b113fb9ef67\"\n                }\n            ],\n            \"total_amount\": 11198,\n            \"offer_amount\": 6397,\n            \"total_order\": 3,\n            \"total_product\": 3,\n            \"createdAt\": \"2025-07-29T08:31:48.126Z\",\n            \"updatedAt\": \"2025-08-04T11:40:59.171Z\",\n            \"apply_rule_amount\": \"5798.00\"\n        },\n        \"discount_message\": \"by any 3 fashion product get one free.\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "get-all",
@@ -998,7 +1246,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"krupesh@gmail.com\",\r\n    \"password\": \"User@123\"\r\n}",
+					"raw": "{\r\n    \"email\":\"krupesh12@gmail.com\",\r\n    \"password\": \"User@123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
